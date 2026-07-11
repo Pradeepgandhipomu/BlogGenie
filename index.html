@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogGenie AI | Smart Blog Generator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div id="appPage">
+        <nav class="navbar">
+            <a href="/" class="brand">
+                <span class="brand-icon">✦</span>
+                <span>Blog<span>Genie</span> AI</span>
+            </a>
+
+            <div class="nav-right">
+                <span class="nav-badge">Mistral AI Powered</span>
+            </div>
+        </nav>
+
+        <main>
+            <section id="generatorSection">
+                <div class="hero">
+                    <span class="hero-tag">SMART BLOG CONTENT GENERATOR</span>
+                    <h1>Turn ideas into <em>blogs people want to read.</em></h1>
+                    <p>Create SEO-friendly, well-structured, publication-ready blogs in seconds.</p>
+                </div>
+
+                <section class="generator-card">
+                    <div class="card-header">
+                        <div>
+                            <p class="step-label">STEP 01</p>
+                            <h2>Tell us about your blog</h2>
+                        </div>
+                        <div class="document-icon">✍️</div>
+                    </div>
+
+                    <p class="error-message" id="errorMessage"></p>
+
+                    <form id="blogForm">
+                        <label>
+                            Blog Topic
+                            <textarea id="topic" placeholder="Example: Benefits of rainwater harvesting in cities" required></textarea>
+                        </label>
+
+                        <div class="form-grid">
+                            <label>
+                                Target Audience
+                                <input id="audience" type="text" placeholder="Students, homeowners, businesses">
+                            </label>
+
+                            <label>
+                                Writing Tone
+                                <select id="tone">
+                                    <option value="Professional">Professional</option>
+                                    <option value="Friendly">Friendly</option>
+                                    <option value="Educational">Educational</option>
+                                    <option value="Creative">Creative</option>
+                                    <option value="Formal">Formal</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div class="form-grid">
+                            <label>
+                                Blog Length
+                                <select id="length">
+                                    <option value="500">Short – 500 words</option>
+                                    <option value="700" selected>Medium – 700 words</option>
+                                    <option value="1000">Long – 1000 words</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                SEO Keywords
+                                <input id="keywords" type="text" placeholder="rainwater harvesting, urban water">
+                            </label>
+                        </div>
+
+                        <button class="generate-btn" type="submit">
+                            <span>Generate Blog</span>
+                            <span class="arrow">→</span>
+                        </button>
+                    </form>
+                </section>
+            </section>
+
+            <section id="resultSection" class="result-section hidden">
+                <div class="result-hero">
+                    <div class="success-icon">✓</div>
+                    <div>
+                        <p class="step-label">BLOG GENERATED</p>
+                        <h1>Your blog is ready.</h1>
+                        <p>Copy, download, share, or ask questions about the generated blog.</p>
+                    </div>
+                </div>
+
+                <section class="blog-card">
+                    <div class="blog-card-top">
+                        <span>✦ AI-GENERATED BLOG</span>
+                        <div class="blog-actions">
+                            <button type="button" onclick="copyBlog()">Copy</button>
+                            <button type="button" onclick="downloadBlog()">Download</button>
+                            <button type="button" onclick="shareBlog()">Share</button>
+                        </div>
+                    </div>
+
+                    <article id="blogContent" class="blog-content"></article>
+                </section>
+
+                <section class="chat-section">
+                    <div class="chat-header">
+                        <div>
+                            <p class="step-label">STEP 02</p>
+                            <h2>Ask about this blog</h2>
+                            <p>Answers are based only on the generated blog.</p>
+                        </div>
+                        <div class="document-icon">💬</div>
+                    </div>
+
+                    <div class="chat-history" id="chatHistory">
+                        <div class="welcome-chat">
+                            <strong>BlogGenie Assistant</strong>
+                            <p>Hello! Ask any question about your generated blog.</p>
+                        </div>
+                    </div>
+
+                    <form class="ask-form" id="askForm">
+                        <input id="question" type="text" placeholder="Ask a question about this blog..." required>
+                        <button type="submit" class="send-btn">Send</button>
+                        <button type="button" class="clear-chat-btn" onclick="clearChat()">Clear</button>
+                    </form>
+                </section>
+
+                <button class="new-blog-btn" type="button" onclick="createNewBlog()">
+                    + Create Another Blog
+                </button>
+            </section>
+        </main>
+
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loader-card">
+                <div class="magic-loader">✦</div>
+                <h2>Writing your blog</h2>
+                <p>BlogGenie AI is creating your publication-ready content.</p>
+                <div class="progress-line"><span></span></div>
+            </div>
+        </div>
+
+        <footer>BlogGenie AI — Create better blogs, faster.</footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
